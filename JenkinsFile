@@ -9,7 +9,6 @@ pipeline {
     environment {
         registry = "kubeimran/vproappdock"
         registryCredential = "dockerhub"
-        ARTVERSION = "${env.BUILD_ID}"
     }
 
     stages{
@@ -94,7 +93,7 @@ pipeline {
             steps {
               sh "docker rmi $regisrty:V$BUILD_NUMBER"
             }
-        }
+         }
          stage("Kubernetes Deploy") {
             agent {label 'KOPS'}
               steps {
@@ -102,4 +101,6 @@ pipeline {
             }
         }
     }
+
+
 }
